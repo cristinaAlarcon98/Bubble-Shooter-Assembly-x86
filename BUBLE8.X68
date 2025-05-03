@@ -1,8 +1,8 @@
 
 
 *-----------------------------------------------------------
-* Title      : VISUALIZADOR GR¡FICO EN 68k PARA BUBBLE SHOOTER
-* Written by : FULGENCIO
+* Title      : VISUALIZADOR GR√ÅFICO EN 68k PARA BUBBLE SHOOTER
+* Written by : CRISTINA ALARCON
 * Date       : 2019
 * Description:
 *-----------------------------------------------------------
@@ -55,14 +55,14 @@ CLIKMAPA
 SHOWMAP ******************************** Subrutina que muestra el estado del mapa en las coordenadas ORIX, ORIY ************************************
     MOVE.L #ORIX,D1
     MOVE.L #ORIY,D2 *Coordenadas iniciales del tablero
-    MOVE.L #MAPA+20,A3 *PosiciÛn de la primera casilla real
+    MOVE.L #MAPA+20,A3 *Posici√≥n de la primera casilla real
    
 LOOPMAP
    MOVE.B (A3)+,D0 *Obtiene el contenido
     CMP.B #$80,D0
     BEQ NEXTROW
     CMP.B #$00,D0
-    BEQ EMPTY       *Est· vacÌa
+    BEQ EMPTY       *Est√° vac√≠a
  
 FILLED             *Dibuja burbuja
     JSR BUBBLE
@@ -78,7 +78,7 @@ EMPTY
 NEXTROW
    MOVE.L #ORIX,D1  *Retorno coordenada X inicial
     ADD.L #SIZE,D2   *Avance coordenada Y
-    CMP.B #$40,(A3)+ *Comprueba lÌnea par/impar
+    CMP.B #$40,(A3)+ *Comprueba l√≠nea par/impar
     BNE NODESP
     ADD.L #SIZE/2,D1 *Si tiene un $40, la fila se desplaza medio hueco a derecha
 NODESP  
@@ -95,7 +95,7 @@ BUBBLE
     MOVE.L D1,D3
     MOVE.L D2,D4    *Copio coordenadas esquina izquierda en D3,D4
     ADD.L #SIZE,D3
-    ADD.L #SIZE,D4  *Creo coordenadas esquina derecha separ·ndolas SIZE pixels
+    ADD.L #SIZE,D4  *Creo coordenadas esquina derecha separ√°ndolas SIZE pixels
     TRAP #15
     MOVEM.L (A7)+,D0-D4
     RTS
@@ -380,7 +380,7 @@ NADA
 
 
     ORG $4000
-    *El borde izquierdo est· marcado con $80 o $40, para indicar fila par o impar
+    *El borde izquierdo est√° marcado con $80 o $40, para indicar fila par o impar
 MAPA
  DC.B $80,$80,$80,$80,$80,$80,$80,$80,$80,$80,$80,$80,$80,$80,$80,$80,$80,$80,$80
  DC.B $80,$02,$03,$06,$04,$06,$03,$01,$06,$01,$05,$02,$01,$05,$06,$04,$03,$05,$80
